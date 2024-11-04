@@ -7,7 +7,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: vm1-hq
+  demands: 
+  - agent.name -equals mylocalvm
 
 variables:
   solution: '**/*.sln'
@@ -16,6 +18,8 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '>4.0.0'
 
 - task: NuGetCommand@2
   inputs:
